@@ -1,23 +1,25 @@
-//
-//  CountdownTimerView.swift
-//  countDown_iOS
-//
-//  Created by jerry on 2021/11/17.
-//
+// 厦门大学计算机专业 | 前华为工程师
+// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
+// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
+// 公众号：花生皮编程
 
 import SwiftUI
 
-struct CountdownTimerView: View {
-        
+struct HspView: View {
     private let predefinedSeconds: [Int] = [10, 30, 60, 120, 300]
     private let symbolActive = "play.circle.fill"
     private let symbolInactive = "pause.circle.fill"
-    private let timerFont = Font.custom("DBLCDTempBlack", size: 50)
+    private let timerFont = Font.custom("DBLCDTempBlack", size: 48)
     
     @State var isCounting: Bool
     @State var remainingSeconds: Int
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    
+    init() {
+        _remainingSeconds = State(initialValue: 60)
+        _isCounting = State(initialValue: false)
+    }
     
     var body: some View {
         VStack {
@@ -29,14 +31,11 @@ struct CountdownTimerView: View {
                         isCounting = false
                     }
                 }.font(timerFont)
-        }.padding()
-        
-        VStack {
             HStack {
                 ForEach (predefinedSeconds, id: \.self) { seconds in
                     Button(getButtonString(from: seconds)) {
                         addSeconds(seconds)
-                    }.padding(5)
+                    }.padding(2)
                 }
             }.padding()
             
@@ -44,14 +43,9 @@ struct CountdownTimerView: View {
                 isCounting.toggle()
             }, label: {
                 Image(systemName: isCounting ? symbolInactive : symbolActive)
-                    .font(.system(size: 100))
+                    .font(.system(size: 80))
             }).padding()
         }
-    }
-    
-    init(seconds: Int, isCounting: Bool = false) {
-        _remainingSeconds = State(initialValue: seconds)
-        _isCounting = State(initialValue: isCounting)
     }
     
     private func addSeconds(_ seconds: Int) {
@@ -67,15 +61,15 @@ struct CountdownTimerView: View {
     
     private func getButtonString(from totalSeconds: Int) -> String {
         if totalSeconds >= 60 {
-            return "+\(totalSeconds / 60) min"
+            return "+\(totalSeconds / 60) 分"
         } else {
-            return "+\(totalSeconds) sec"
+            return "+\(totalSeconds) 秒"
         }
     }
 }
 
-struct CountdownTimerView_Previews: PreviewProvider {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        CountdownTimerView(seconds: 40)
+        HspView()
     }
 }

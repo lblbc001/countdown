@@ -8,19 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		C49A41F527454A1700F4714C /* countDown_iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A41F427454A1700F4714C /* countDown_iOSApp.swift */; };
-		C49A41F727454A1700F4714C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A41F627454A1700F4714C /* ContentView.swift */; };
+		C49A41F727454A1700F4714C /* HspView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A41F627454A1700F4714C /* HspView.swift */; };
 		C49A41F927454A1B00F4714C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C49A41F827454A1B00F4714C /* Assets.xcassets */; };
 		C49A41FC27454A1B00F4714C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C49A41FB27454A1B00F4714C /* Preview Assets.xcassets */; };
-		C49A420327454A3E00F4714C /* CountdownTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49A420227454A3E00F4714C /* CountdownTimerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C49A41F127454A1700F4714C /* countDown_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = countDown_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C49A41F427454A1700F4714C /* countDown_iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = countDown_iOSApp.swift; sourceTree = "<group>"; };
-		C49A41F627454A1700F4714C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C49A41F627454A1700F4714C /* HspView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HspView.swift; sourceTree = "<group>"; };
 		C49A41F827454A1B00F4714C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C49A41FB27454A1B00F4714C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		C49A420227454A3E00F4714C /* CountdownTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownTimerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,10 +52,9 @@
 			isa = PBXGroup;
 			children = (
 				C49A41F427454A1700F4714C /* countDown_iOSApp.swift */,
-				C49A41F627454A1700F4714C /* ContentView.swift */,
+				C49A41F627454A1700F4714C /* HspView.swift */,
 				C49A41F827454A1B00F4714C /* Assets.xcassets */,
 				C49A41FA27454A1B00F4714C /* Preview Content */,
-				C49A420227454A3E00F4714C /* CountdownTimerView.swift */,
 			);
 			path = countDown_iOS;
 			sourceTree = "<group>";
@@ -140,9 +137,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C49A41F727454A1700F4714C /* ContentView.swift in Sources */,
+				C49A41F727454A1700F4714C /* HspView.swift in Sources */,
 				C49A41F527454A1700F4714C /* countDown_iOSApp.swift in Sources */,
-				C49A420327454A3E00F4714C /* CountdownTimerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
