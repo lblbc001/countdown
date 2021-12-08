@@ -24,13 +24,7 @@ struct HspView: View {
     var body: some View {
         VStack {
             Text("\(getTimeString(from: remainingSeconds))")
-                .onReceive(timer) { _ in
-                    if isCounting && remainingSeconds > 0 {
-                        remainingSeconds -= 1
-                    } else {
-                        isCounting = false
-                    }
-                }.font(timerFont)
+                .font(timerFont)
             HStack {
                 ForEach (predefinedSeconds, id: \.self) { seconds in
                     Button(getButtonString(from: seconds)) {
@@ -45,6 +39,12 @@ struct HspView: View {
                 Image(systemName: isCounting ? symbolInactive : symbolActive)
                     .font(.system(size: 80))
             }).padding()
+        }.onReceive(timer) { _ in
+            if isCounting && remainingSeconds > 0 {
+                remainingSeconds -= 1
+            } else {
+                isCounting = false
+            }
         }
     }
     
