@@ -1,28 +1,63 @@
 import 'package:flutter/material.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
-/// 分享编程技术，没啥深度，但看得懂，适合初学者。
-/// Java | 安卓 | 前端 | Flutter | 小程序 | 鸿蒙
+/// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
+/// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 /// 公众号：花生皮编程
-void main() => runApp(MyApp());
+void main() {
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '花生皮编程',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('花生皮编程'),
-        ),
-        body: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
-          child: Center(
-            child: Column(
-              children: const <Widget>[Text("hahaha")],
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  final String title;
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
+
+  void _incrementCounter() {
+    setState(() {
+      _counter++;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            const Text(
+              'You have pushed the button this many times:',
             ),
-          ),
+            Text(
+              '$_counter',
+              style: Theme.of(context).textTheme.headline4,
+            ),
+          ],
         ),
       ),
     );
