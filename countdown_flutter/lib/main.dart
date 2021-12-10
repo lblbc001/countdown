@@ -10,6 +10,7 @@ void main() {
 
 class HspApp extends StatelessWidget {
   const HspApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -33,6 +34,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  var isCounting = false;
+  var remainingSeconds = 60;
 
   void _incrementCounter() {
     setState(() {
@@ -50,16 +53,54 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+            Text(remainingSeconds.toString()),
+            Row(
+              children: [
+                buildTextButton(10),
+                buildTextButton(30),
+                buildTextButton(60),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            IconButton(
+              iconSize: 50,
+              icon: buildIcon(),
+              onPressed: () {
+                print("花生皮编程");
+                setState(() {
+                  // remainingSeconds++;
+                  isCounting = !isCounting;
+                });
+              },
+            )
           ],
         ),
       ),
     );
+  }
+
+  TextButton buildTextButton(int seconds) {
+    return TextButton(
+      onPressed: () {
+        addSeconds(seconds);
+      },
+      child: Text('+$seconds秒'),
+    );
+  }
+
+  Icon buildIcon() {
+    if (isCounting) {
+      return const Icon(Icons.play_circle, color: Colors.blue);
+    } else {
+      return const Icon(Icons.pause_circle, color: Colors.blue);
+    }
+    // return Icon(
+    //           // Icons.pause_circle,
+    //           if(isCounting) {Icons.play_circle} else {Icons.pause_circle},
+    //           color: Colors.blue,
+    //         );
+  }
+
+  void addSeconds(int seconds) {
+    remainingSeconds += seconds;
   }
 }
