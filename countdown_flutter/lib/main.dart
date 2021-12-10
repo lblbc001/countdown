@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 /// 包含：Java | 安卓 | 前端 | Flutter | iOS | 小程序 | 鸿蒙
 /// 公众号：花生皮编程
 void main() {
-  runApp(const MyApp());
+  runApp(const HspApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class HspApp extends StatelessWidget {
+  const HspApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
