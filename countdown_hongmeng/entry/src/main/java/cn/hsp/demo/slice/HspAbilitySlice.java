@@ -7,11 +7,13 @@ import ohos.aafwk.content.Intent;
 import ohos.agp.components.Component;
 import ohos.agp.components.Image;
 import ohos.agp.components.Text;
+import ohos.agp.window.dialog.ToastDialog;
 import ohos.eventhandler.EventHandler;
 import ohos.eventhandler.EventRunner;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
 /**
  * 厦门大学计算机专业 | 前华为工程师
  * 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -20,12 +22,14 @@ import java.util.TimerTask;
  */
 public class HspAbilitySlice extends AbilitySlice {
     private Timer timer;
-    private final int interval = 50;
-    private long startTime;
-    private long timeElapsed;
+    private final int interval = 1000;
     private Text timeText;
+    private Text addTenSecondsTv;
+    private Text addThirtySecondsTv;
+    private Text addOneMinuteTv;
     private Image startImage;
     private Image pauseImage;
+    private int remainingSeconds = 60;
     private EventHandler eventHandler = new EventHandler(EventRunner.current());
 
     @Override
@@ -33,36 +37,58 @@ public class HspAbilitySlice extends AbilitySlice {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_hsp);
         timeText = findComponentById(ResourceTable.Id_time_text);
+        addTenSecondsTv = findComponentById(ResourceTable.Id_addTenSecondsTv);
+        addThirtySecondsTv = findComponentById(ResourceTable.Id_addThirtySecondsTv);
+        addOneMinuteTv = findComponentById(ResourceTable.Id_addOneMinuteTv);
         startImage = findComponentById(ResourceTable.Id_start_image);
         pauseImage = findComponentById(ResourceTable.Id_pause_image);
+        addTenSecondsTv.setClickedListener(component -> addTime(10));
+        addThirtySecondsTv.setClickedListener(component -> addTime(30));
+        addOneMinuteTv.setClickedListener(component -> addTime(60));
         startImage.setClickedListener(component -> startTimer());
-        pauseImage.setClickedListener(component -> pauseTimer());
+        pauseImage.setClickedListener(component -> stopTimer());
     }
 
     private void startTimer() {
-        startTime = System.currentTimeMillis();
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                long offset = System.currentTimeMillis() - startTime + timeElapsed;
-                eventHandler.postTask(() -> timeText.setText(TimeUtil.formatTime(offset)));
+                eventHandler.postTask(() -> changeTime());
             }
         }, 0, interval);
         showPauseBtn();
     }
 
-    private void resetTimer() {
-        timeElapsed = 0;
+    private void stopTimer() {
         timer.cancel();
         showStartBtn();
-        eventHandler.postTask(() -> timeText.setText(getString(ResourceTable.String_default_time)), interval);
     }
 
-    private void pauseTimer() {
-        timer.cancel();
-        timeElapsed += System.currentTimeMillis() - startTime;
-        showStartBtn();
+    private void addTime(int seconds) {
+        remainingSeconds += seconds;
+        updateTimeTv();
+    }
+
+    private void changeTime() {
+        if (remainingSeconds > 0) {
+            remainingSeconds--;
+            updateTimeTv();
+        } else {
+            stopTimer();
+            new ToastDialog(getContext()).setText("时间到啦！").show();
+        }
+    }
+
+    private void updateTimeTv() {
+        timeText.setText(getTimeString());
+    }
+
+    private String getTimeString() {
+        int hours = remainingSeconds / 3600;
+        int minutes = remainingSeconds / 60 % 60;
+        int seconds = remainingSeconds % 60;
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
 
     private void showStartBtn() {
