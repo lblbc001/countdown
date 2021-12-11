@@ -90,11 +90,6 @@ class _MyHomePageState extends State<MyHomePage> {
     } else {
       return const Icon(Icons.play_circle, color: Colors.blue);
     }
-    // return Icon(
-    //           // Icons.pause_circle,
-    //           if(isCounting) {Icons.play_circle} else {Icons.pause_circle},
-    //           color: Colors.blue,
-    //         );
   }
 
   void addSeconds(int seconds) {
