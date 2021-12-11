@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:sprintf/sprintf.dart';
 
@@ -34,8 +36,32 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var isCounting = false;
+  final interval = const Duration(milliseconds: 1000);
+  var timer;
+  var isStarted = false;
   var remainingSeconds = 61;
+
+  void startTimer() {
+    timer = Timer.periodic(interval, (timer) {
+      setState(() {
+        if (remainingSeconds > 0) {
+          remainingSeconds--;
+        } else {
+          pauseTimer();
+        }
+      });
+    });
+    setState(() {
+      isStarted = true;
+    });
+  }
+
+  void pauseTimer() {
+    timer.cancel();
+    setState(() {
+      isStarted = false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,10 +89,11 @@ class _MyHomePageState extends State<MyHomePage> {
               iconSize: 50,
               icon: buildClickButton(),
               onPressed: () {
-                setState(() {
-                  // remainingSeconds++;
-                  isCounting = !isCounting;
-                });
+                if (isStarted) {
+                  pauseTimer();
+                } else {
+                  startTimer();
+                }
               },
             )
           ],
@@ -85,7 +112,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Icon buildClickButton() {
-    if (isCounting) {
+    if (isStarted) {
       return const Icon(Icons.pause_circle, color: Colors.blue);
     } else {
       return const Icon(Icons.play_circle, color: Colors.blue);
