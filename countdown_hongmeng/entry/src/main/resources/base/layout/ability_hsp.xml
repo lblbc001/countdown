@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:alignment="center"
+    ohos:orientation="vertical">
+
+    <Text
+        ohos:id="$+id:time_text"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="$graphic:background_ability_main"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text="$string:default_time"
+        ohos:text_size="30vp"
+        ohos:weight="1"/>
+
+    <DependentLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:bottom_margin="50vp"
+        ohos:orientation="horizontal">
+
+        <Image
+            ohos:id="$+id:reset_image"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:image_src="$graphic:ic_reset"
+            ohos:padding="10vp"
+            ohos:start_margin="50vp"
+            ohos:weight="1"/>
+
+        <Image
+            ohos:id="$+id:start_image"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:align_parent_end="true"
+            ohos:end_margin="50vp"
+            ohos:image_src="$graphic:ic_start"
+            ohos:padding="10vp"
+            ohos:weight="1"/>
+
+        <Image
+            ohos:id="$+id:pause_image"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:align_parent_end="true"
+            ohos:end_margin="50vp"
+            ohos:image_src="$graphic:ic_pause"
+            ohos:padding="10vp"
+            ohos:visibility="hide"
+            ohos:weight="1"/>
+    </DependentLayout>
+</DirectionalLayout>
