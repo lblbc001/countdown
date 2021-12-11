@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var isCounting = false;
-  var remainingSeconds = 60;
+  var remainingSeconds = 61;
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +107,6 @@ class _MyHomePageState extends State<MyHomePage> {
     var hours = totalSeconds ~/ 3600;
     var minutes = totalSeconds ~/ 60 % 60;
     var seconds = totalSeconds % 60;
-    return sprintf(':%2.2f:', [seconds]);
-    // return hours.toString() + ":" + minutes.toString() + ":" + seconds.toString();
+    return sprintf('%2.2d:%2.2d:%2.2d', [hours, minutes, seconds]);
   }
 }
