@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sprintf/sprintf.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
 /// 专注《零基础学编程系列》https://cxyxy.blog.csdn.net/article/details/121134634
@@ -19,7 +20,7 @@ class HspApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: '花生皮编程'),
+      home: const MyHomePage(title: '倒计时-花生皮编程'),
     );
   }
 }
@@ -33,15 +34,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
   var isCounting = false;
   var remainingSeconds = 60;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +47,12 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(remainingSeconds.toString()),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text(getTimeString(remainingSeconds)),
+            ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 buildTextButton(10),
                 buildTextButton(30),
@@ -63,9 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             IconButton(
               iconSize: 50,
-              icon: buildIcon(),
+              icon: buildClickButton(),
               onPressed: () {
-                print("花生皮编程");
                 setState(() {
                   // remainingSeconds++;
                   isCounting = !isCounting;
@@ -87,11 +84,11 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Icon buildIcon() {
+  Icon buildClickButton() {
     if (isCounting) {
-      return const Icon(Icons.play_circle, color: Colors.blue);
-    } else {
       return const Icon(Icons.pause_circle, color: Colors.blue);
+    } else {
+      return const Icon(Icons.play_circle, color: Colors.blue);
     }
     // return Icon(
     //           // Icons.pause_circle,
@@ -101,6 +98,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void addSeconds(int seconds) {
-    remainingSeconds += seconds;
+    setState(() {
+      remainingSeconds += seconds;
+    });
+  }
+
+  getTimeString(int totalSeconds) {
+    var hours = totalSeconds ~/ 3600;
+    var minutes = totalSeconds ~/ 60 % 60;
+    var seconds = totalSeconds % 60;
+    return sprintf(':%2.2f:', [seconds]);
+    // return hours.toString() + ":" + minutes.toString() + ":" + seconds.toString();
   }
 }
