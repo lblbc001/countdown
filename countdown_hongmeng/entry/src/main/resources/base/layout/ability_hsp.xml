@@ -13,30 +13,52 @@
         ohos:background_element="$graphic:background_ability_main"
         ohos:layout_alignment="horizontal_center"
         ohos:text="$string:default_time"
-        ohos:text_size="30vp"
-        ohos:weight="1"/>
+        ohos:text_size="30vp"/>
 
-    <DependentLayout
+    <DirectionalLayout
         ohos:height="match_content"
-        ohos:width="match_parent"
-        ohos:bottom_margin="50vp"
-        ohos:orientation="horizontal">
+        ohos:width="match_content"
+        ohos:orientation="horizontal"
+        ohos:top_margin="50vp">
 
-        <Image
-            ohos:id="$+id:reset_image"
+        <Text
+            ohos:id="$+id:addTenSecondsTv"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:image_src="$graphic:ic_reset"
-            ohos:padding="10vp"
-            ohos:start_margin="50vp"
-            ohos:weight="1"/>
+            ohos:padding="5vp"
+            ohos:text="+10秒"
+            ohos:text_color="#2196F3"
+            ohos:text_size="30vp"/>
+
+        <Text
+            ohos:id="$+id:addThirtySecondsTv"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:padding="5vp"
+            ohos:text="+30秒"
+            ohos:text_color="#2196F3"
+            ohos:text_size="30vp"/>
+
+        <Text
+            ohos:id="$+id:addOneMinuteTv"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:padding="5vp"
+            ohos:text="+1分钟"
+            ohos:text_color="#2196F3"
+            ohos:text_size="30vp"/>
+    </DirectionalLayout>
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:orientation="horizontal"
+        ohos:top_margin="20vp">
 
         <Image
             ohos:id="$+id:start_image"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:align_parent_end="true"
-            ohos:end_margin="50vp"
             ohos:image_src="$graphic:ic_start"
             ohos:padding="10vp"
             ohos:weight="1"/>
@@ -45,11 +67,9 @@
             ohos:id="$+id:pause_image"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:align_parent_end="true"
-            ohos:end_margin="50vp"
             ohos:image_src="$graphic:ic_pause"
             ohos:padding="10vp"
             ohos:visibility="hide"
             ohos:weight="1"/>
-    </DependentLayout>
+    </DirectionalLayout>
 </DirectionalLayout>

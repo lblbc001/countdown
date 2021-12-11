@@ -26,7 +26,6 @@ public class HspAbilitySlice extends AbilitySlice {
     private Text timeText;
     private Image startImage;
     private Image pauseImage;
-    private Image resetImage;
     private EventHandler eventHandler = new EventHandler(EventRunner.current());
 
     @Override
@@ -36,11 +35,8 @@ public class HspAbilitySlice extends AbilitySlice {
         timeText = findComponentById(ResourceTable.Id_time_text);
         startImage = findComponentById(ResourceTable.Id_start_image);
         pauseImage = findComponentById(ResourceTable.Id_pause_image);
-        resetImage = findComponentById(ResourceTable.Id_reset_image);
         startImage.setClickedListener(component -> startTimer());
         pauseImage.setClickedListener(component -> pauseTimer());
-        resetImage.setClickedListener(component -> resetTimer());
-
     }
 
     private void startTimer() {
