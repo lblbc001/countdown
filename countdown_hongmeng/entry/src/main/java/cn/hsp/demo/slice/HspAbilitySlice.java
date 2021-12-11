@@ -1,6 +1,5 @@
 package cn.hsp.demo.slice;
 
-import cn.hsp.demo.TimeUtil;
 import cn.hsp.demo.ResourceTable;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
