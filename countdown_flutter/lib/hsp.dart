@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sprintf/sprintf.dart';
 
 /// 厦门大学计算机专业 | 前华为工程师
@@ -39,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final interval = const Duration(milliseconds: 1000);
   var timer;
   var isStarted = false;
-  var remainingSeconds = 61;
+  var remainingSeconds = 10;
 
   void startTimer() {
     timer = Timer.periodic(interval, (timer) {
@@ -47,7 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
         if (remainingSeconds > 0) {
           remainingSeconds--;
         } else {
-          pauseTimer();
+          stopTimer();
+          Fluttertoast.showToast(msg: "时间到啦！");
         }
       });
     });
@@ -56,7 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void pauseTimer() {
+  void stopTimer() {
     timer.cancel();
     setState(() {
       isStarted = false;
@@ -90,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
               icon: buildClickButton(),
               onPressed: () {
                 if (isStarted) {
-                  pauseTimer();
+                  stopTimer();
                 } else {
                   startTimer();
                 }

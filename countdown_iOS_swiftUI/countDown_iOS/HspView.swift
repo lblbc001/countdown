@@ -11,14 +11,14 @@ struct HspView: View {
     private let symbolInactive = "pause.circle.fill"
     private let timerFont = Font.custom("DBLCDTempBlack", size: 48)
     
-    @State var isCounting: Bool
+    @State var isStarted: Bool
     @State var remainingSeconds: Int
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     init() {
         _remainingSeconds = State(initialValue: 60)
-        _isCounting = State(initialValue: false)
+        _isStarted = State(initialValue: false)
     }
     
     var body: some View {
@@ -34,16 +34,16 @@ struct HspView: View {
             }.padding()
             
             Button(action: {
-                isCounting.toggle()
+                isStarted.toggle()
             }, label: {
-                Image(systemName: isCounting ? symbolInactive : symbolActive)
+                Image(systemName: isStarted ? symbolInactive : symbolActive)
                     .font(.system(size: 80))
             }).padding()
         }.onReceive(timer) { _ in
-            if isCounting && remainingSeconds > 0 {
+            if isStarted && remainingSeconds > 0 {
                 remainingSeconds -= 1
             } else {
-                isCounting = false
+                isStarted = false
             }
         }
     }
