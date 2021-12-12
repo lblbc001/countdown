@@ -3,22 +3,22 @@ package cn.hsp.demo
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.IconToggleButton
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cn.hsp.demo.ui.theme.Blue
 import cn.hsp.demo.ui.theme.HspDemoTheme
 
 /**
@@ -29,10 +29,8 @@ import cn.hsp.demo.ui.theme.HspDemoTheme
  */
 
 class MainActivity : ComponentActivity() {
-    private val interval = 50L
-    private var startTime = 0L
-    private var lastTimeElapsed = 0L
-    private var timeElapsed = mutableStateOf(0L)
+    private val interval = 1000L
+    private var remainingSeconds = mutableStateOf(60L)
     private var isStarted = mutableStateOf(false)
     private var handler = Handler(Looper.getMainLooper())
 
@@ -44,10 +42,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier
                         .fillMaxSize()
                 ) {
-                    HspPage(timeElapsed, isStarted) { cmd ->
+                    HspPage(remainingSeconds, isStarted) { cmd ->
                         when (cmd) {
                             CMD_START -> startTimer()
-                            CMD_PAUSE -> pauseTimer()
+                            CMD_PAUSE -> stopTimer()
                         }
                     }
                 }
@@ -55,38 +53,61 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun changeText() {
-        val offset = System.currentTimeMillis() - startTime + lastTimeElapsed
-        timeElapsed.value = offset
-        handler.postDelayed({ changeText() }, interval)
+    private fun changeTime() {
+        if (remainingSeconds.value > 0) {
+            remainingSeconds.value -= 1
+            handler.postDelayed({ changeTime() }, interval)
+        } else {
+            stopTimer()
+            isStarted.value = false
+            Toast.makeText(this, "时间到啦！", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun startTimer() {
-        startTime = System.currentTimeMillis()
-        handler.postDelayed({ changeText() }, interval)
+        handler.postDelayed({ changeTime() }, interval)
     }
 
-    private fun pauseTimer() {
+    private fun stopTimer() {
         handler.removeCallbacksAndMessages(null)
-        lastTimeElapsed += System.currentTimeMillis() - startTime
     }
 }
 
 @Composable
 fun HspPage(
-    _timeElapsed: MutableState<Long>,
+    _remainingSeconds: MutableState<Long>,
     _isStarted: MutableState<Boolean>,
     callBack: (Int) -> Unit
 ) {
-    var timeElapsed by remember { _timeElapsed }
+    var remainingSeconds by remember { _remainingSeconds }
     var isStarted by remember { _isStarted }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxSize(),
     ) {
-        Text(TimeUtil.formatTime(timeElapsed), fontSize = 40.sp)
-
+        Text(formatTime(remainingSeconds), fontSize = 40.sp)
+        Row(
+            modifier = Modifier
+                .padding(top = 20.dp)
+        )
+        {
+            TextButton(
+                onClick = { remainingSeconds += 10 },
+            ) {
+                Text("+10秒", color = Blue, fontSize = 25.sp)
+            }
+            TextButton(
+                onClick = { remainingSeconds += 30 },
+            ) {
+                Text("+30秒", color = Blue, fontSize = 25.sp)
+            }
+            TextButton(
+                onClick = { remainingSeconds += 60 },
+            ) {
+                Text("+1分钟", color = Blue, fontSize = 25.sp)
+            }
+        }
         IconToggleButton(
             modifier = Modifier.padding(top = 50.dp, start = 20.dp),
             checked = isStarted,
@@ -111,6 +132,13 @@ private fun getImageRes(isStarted: Boolean): Int {
     } else {
         R.drawable.ic_start
     }
+}
+
+fun formatTime(remainingSeconds: Long): String {
+    val hours = remainingSeconds / 3600
+    val minutes = remainingSeconds / 60 % 60
+    val seconds = remainingSeconds % 60
+    return String.format("%02d:%02d:%02d", hours, minutes, seconds)
 }
 
 val CMD_START = 1
