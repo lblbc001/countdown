@@ -6,8 +6,10 @@ import android.os.Looper
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.IconButton
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.IconToggleButton
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -46,7 +48,6 @@ class MainActivity : ComponentActivity() {
                         when (cmd) {
                             CMD_START -> startTimer()
                             CMD_PAUSE -> pauseTimer()
-                            else -> resetTimer()
                         }
                     }
                 }
@@ -69,14 +70,6 @@ class MainActivity : ComponentActivity() {
         handler.removeCallbacksAndMessages(null)
         lastTimeElapsed += System.currentTimeMillis() - startTime
     }
-
-    private fun resetTimer() {
-        handler.removeCallbacksAndMessages(null)
-        lastTimeElapsed = 0
-        timeElapsed.value = 0
-        isStarted.value = false
-    }
-
 }
 
 @Composable
@@ -94,26 +87,19 @@ fun HspPage(
     ) {
         Text(TimeUtil.formatTime(timeElapsed), fontSize = 40.sp)
 
-        Row(
-            modifier = Modifier.padding(top = 50.dp)
+        IconToggleButton(
+            modifier = Modifier.padding(top = 50.dp, start = 20.dp),
+            checked = isStarted,
+            onCheckedChange = {
+                if (isStarted) {
+                    callBack(CMD_PAUSE)
+                } else {
+                    callBack(CMD_START)
+                }
+                isStarted = it
+            },
         ) {
-            IconButton(onClick = { callBack(CMD_RESET) }) {
-                Image(painterResource(R.drawable.ic_reset), "")
-            }
-            IconToggleButton(
-                modifier = Modifier.padding(start = 20.dp),
-                checked = isStarted,
-                onCheckedChange = {
-                    if (isStarted) {
-                        callBack(CMD_PAUSE)
-                    } else {
-                        callBack(CMD_START)
-                    }
-                    isStarted = it
-                },
-            ) {
-                Image(painterResource(getImageRes(isStarted)), "")
-            }
+            Image(painterResource(getImageRes(isStarted)), "")
         }
     }
 }
@@ -129,4 +115,3 @@ private fun getImageRes(isStarted: Boolean): Int {
 
 val CMD_START = 1
 val CMD_PAUSE = 2
-val CMD_RESET = 3
