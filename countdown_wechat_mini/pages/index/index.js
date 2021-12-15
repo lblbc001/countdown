@@ -17,7 +17,6 @@ Page({
     displayTime: '00:00:00',
     time: 0,
     screenStyle: 'container-countdown',
-    screenText: '倒计时',
     alarmSrc: '../../assets/beep.mp3',
   },
 
@@ -36,16 +35,14 @@ mmBindPickerChange: function(e) {
 },
 
 ssBindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
         ss: e.detail.value
     })
 },
 
-  onStartHandler(){
+startTimer(){
       if((!interval)&&(this.data.timeInSecond!=0)){
           this.setData({screenStyle: 'container-countdown'});
-          this.setData({screenText: '倒计时'})
           this.setData({
                 action: {
                     method: 'pause'
@@ -63,7 +60,6 @@ ssBindPickerChange: function(e) {
             clearInterval(interval);
             interval = null;
             this.setData({screenStyle: 'time-up-container'});
-            this.setData({screenText: '时间到!!!'})
 
             this.setData({
                 action: {
@@ -78,9 +74,8 @@ ssBindPickerChange: function(e) {
       
   },
 
-  onStopHandler(){
+  stopTimer(){
       this.setData({screenStyle: 'container-countdown'});
-      this.setData({screenText: '倒计时'})
       this.setData({
             action: {
                 method: 'pause'

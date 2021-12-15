@@ -6,7 +6,6 @@
   
   padding: 80rpx 0;
   box-sizing: border-box;
-  background-color: aqua;
 } 
 
 .heading {
@@ -49,6 +48,7 @@
 }
 
 .button-start{
+  color:white;
   background-color: green;
   height: 228rpx;
   width: 228rpx;
@@ -60,11 +60,11 @@
 
 .button-stop{
   display: flex;
+  color:white;
   background-color: red;
   height: 228rpx;
   width: 228rpx;
   border-radius: 50%;
-  border: 1px solid black;
   align-items: center;
   justify-content: center;
 }
