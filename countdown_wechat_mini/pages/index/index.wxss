@@ -1,32 +1,37 @@
-/**index.wxss**/
-/**.userinfo {
+.container-countdown {
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
-}
-
-.userinfo-nickname {
-  color: #aaa;
-}
-
-.usermotto {
-  margin-top: 200px;
-}
-
-.display-container {
   
-  align-items: center;
-  justify-content: center;
-  border: 1px solid red;
+  padding: 80rpx 0;
+  box-sizing: border-box;
+  background-color: aqua;
+} 
+
+.heading {
+    font-size: 3.4em;
+    font-weight: 700;
+    align-self: center;
 }
-**/
+
+.input-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40rpx;
+    margin-top: 40rpx;
+}
+
+.picker {
+    width: 190rpx;
+    height: 60rpx;
+    margin-right: 23rpx;
+    display: inline-block;
+    font-size: 1.3em;
+}
+
 .count-down {
   font-size: 3.4em;
   font-weight: 500;
@@ -48,7 +53,6 @@
   height: 228rpx;
   width: 228rpx;
   border-radius: 50%;
-  border: 1px solid yellow;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -68,4 +72,14 @@
 .button-text {
   font-size: 1.5em;
   font-weight: 600;
+}
+
+.time-up-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80rpx 0;
+    box-sizing: border-box;
+    background-color: pink;
 }
