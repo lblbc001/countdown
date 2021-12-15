@@ -17,18 +17,16 @@ Page({
     displayTime: '00:00:00',
     time: 0,
     screenStyle: 'container-countdown',
-    alarmSrc: '../../assets/beep.mp3',
+    alarmSrc: '../../assets/notice.mp3',
   },
 
 hhBindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       hh: e.detail.value
     })
   },
 
 mmBindPickerChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
         mm: e.detail.value
     })
