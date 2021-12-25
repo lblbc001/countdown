@@ -3,7 +3,7 @@ const minutes = []
 const seconds = []
 var interval = 0
 var isStarted = false
-var remainingSeconds = 0
+var remainingSeconds = 10
 
 for (let i = 0; i <= 9; i++) {
   hours.push(i)
@@ -20,12 +20,9 @@ for (let i = 0; i <= 59; i++) {
 Page({
   data: {
     hours,
-    hour: "00",
     minutes,
-    minute: "00",
     seconds,
-    second: "00",
-    displayTime: '00:00:00',
+    displayTime: '00:00:10',
     value: [0, 0, 0],
     startPauseButtonText: '开始',
   },
@@ -81,14 +78,14 @@ Page({
     })
   },
   formatTime(timeInSeconds) {
-    var mm = parseInt(timeInSeconds / 3600)
-    if (mm < 10) mm = '0' + mm
-    var ss = parseInt(timeInSeconds % 3600 / 60)
-    if (ss < 10) ss = '0' + ss
-    var ssss = parseInt(timeInSeconds % 60)
-    if (ssss < 10) {
-      ssss = '0' + ssss
+    var hour = parseInt(timeInSeconds / 3600)
+    if (hour < 10) hour = '0' + hour
+    var minute = parseInt(timeInSeconds % 3600 / 60)
+    if (minute < 10) minute = '0' + minute
+    var seconds = parseInt(timeInSeconds % 60)
+    if (seconds < 10) {
+      seconds = '0' + seconds
     }
-    return `${mm}:${ss}:${ssss}`
+    return `${hour}:${minute}:${seconds}`
   },
 })
