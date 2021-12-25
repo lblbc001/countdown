@@ -1,136 +1,95 @@
-//index.js
-var util = require('../../utils/util.js')
+const hours = []
+const minutes = []
+const seconds = []
+var interval = 0
+var isStarted = false
+var remainingSeconds = 0
 
-let mmssArr = util.generateTimeArr(60);
-let hhArr = util.generateTimeArr(12);
-let interval = null;
+for (let i = 0; i <= 9; i++) {
+  hours.push(i)
+}
+
+for (let i = 0; i <= 59; i++) {
+  minutes.push(i)
+}
+
+for (let i = 0; i <= 59; i++) {
+  seconds.push(i)
+}
 
 Page({
   data: {
-    hh: 0,
-    mm: 0,
-    ss: 0,
-    hhArr: hhArr,
-    mmArr: mmssArr,
-    ssArr: mmssArr,
-    timeInSecond: 0,
+    hours,
+    hour: "00",
+    minutes,
+    minute: "00",
+    seconds,
+    second: "00",
     displayTime: '00:00:00',
-    time: 0,
-    screenStyle: 'container-countdown',
-    alarmSrc: '../../assets/notice.mp3',
+    value: [0, 0, 0],
+    startPauseButtonText: '开始',
   },
 
-hhBindPickerChange: function(e) {
+  bindChange(e) {
+    const val = e.detail.value
+    remainingSeconds = this.data.hours[val[0]] * 3600 + this.data.minutes[val[1]] * 60 + this.data.seconds[val[2]]
     this.setData({
-      hh: e.detail.value
+      displayTime: this.formatTime(remainingSeconds)
     })
   },
-
-mmBindPickerChange: function(e) {
-    this.setData({
-        mm: e.detail.value
-    })
-},
-
-ssBindPickerChange: function(e) {
-    this.setData({
-        ss: e.detail.value
-    })
-},
-
-startTimer(){
-      if((!interval)&&(this.data.timeInSecond!=0)){
-          this.setData({screenStyle: 'container-countdown'});
-          this.setData({
-                action: {
-                    method: 'pause'
-                }
-            })
-          interval = setInterval(()=>{
-          this.setData({
-              timeInSecond: this.data.timeInSecond-1
-          })
-          this.setData({
-                //timeInSecond: util.getTotalSeconds(this.data.hh, this.data.mm, this.data.ss),
-                displayTime: util.getHHSSMM(this.data.timeInSecond)
-            })
-        if(this.data.timeInSecond<=0){
-            clearInterval(interval);
-            interval = null;
-            this.setData({screenStyle: 'time-up-container'});
-
-            this.setData({
-                action: {
-                    method: 'play'
-                }
-            })
-        }
-      }, 1000)
-      }else{
-          console.log('interval', interval)
+  startOrPauseTimer() {
+    if (isStarted) {
+      if (interval != 0) {
+        clearInterval(interval)
+        interval = 0
       }
-      
-  },
-
-  stopTimer(){
-      this.setData({screenStyle: 'container-countdown'});
       this.setData({
-            action: {
-                method: 'pause'
-            }
-        })
-      if(interval){
-        clearInterval(interval);
-        interval = null;
-        this.setData({
-          timeInSecond: util.getTotalSeconds(this.data.hh, this.data.mm, this.data.ss),
-          //displayTime: util.getHHSSMM(this.data.timeInSecond)
-        });
-        this.setData({
-            //timeInSecond: util.getTotalSeconds(this.data.hh, this.data.mm, this.data.ss),
-            displayTime: util.getHHSSMM(this.data.timeInSecond)
-        })
-      }
-  },
-
-  onSetHandler(){
-      //console.log(this.data)
-      console.log(util.getHHSSMM(this.data.timeInSecond))
-      this.setData({
-          timeInSecond: util.getTotalSeconds(this.data.hh, this.data.mm, this.data.ss),
-          //displayTime: util.getHHSSMM(this.data.timeInSecond)
-      });
-      this.setData({
-          //timeInSecond: util.getTotalSeconds(this.data.hh, this.data.mm, this.data.ss),
-          displayTime: util.getHHSSMM(this.data.timeInSecond)
+        startPauseButtonText: '开始'
       })
-    console.log(this.data)
-  },
+    } else {
+      this.setData({
+        startPauseButtonText: '暂停'
+      })
 
-  onHHChange(e){
-      var value = e.detail.value
-      if(!isNaN(value)){
-          this.setData({
-              hh: value
-          })
+      if (interval == 0) {
+        interval = setInterval(() => {
+          if (remainingSeconds > 0) {
+            remainingSeconds--
+            this.setData({
+              displayTime: this.formatTime(remainingSeconds)
+            })
+          }
+          else {
+            this.resetTimer()
+          }
+        }, 1000)
       }
-  },
+    }
 
-  onMMChange(e){
-      var value = e.detail.value
-      if(!isNaN(value)){
-          this.setData({
-              mm: value
-          })
-      }
+    isStarted = !isStarted
   },
-
-  onSSChange(e){
-      var value = e.detail.value
-      if(!isNaN(value)){
-          this.setData({
-              ss: value
-          })
-      }
-  }
+  resetTimer() {
+    if (interval != 0) {
+      clearInterval(interval)
+      interval = 0
+    }
+    this.setData({
+      displayTime: this.formatTime(0)
+    })
+    isStarted = false
+    this.setData({
+      startPauseButtonText: '开始'
+    })
+  },
+  formatTime(timeInSeconds) {
+    var mm = parseInt(timeInSeconds / 3600)
+    if (mm < 10) mm = '0' + mm
+    var ss = parseInt(timeInSeconds % 3600 / 60)
+    if (ss < 10) ss = '0' + ss
+    var ssss = parseInt(timeInSeconds % 60)
+    if (ssss < 10) {
+      ssss = '0' + ssss
+    }
+    return `${mm}:${ss}:${ssss}`
+  },
 })

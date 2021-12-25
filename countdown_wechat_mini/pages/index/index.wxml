@@ -1,40 +1,31 @@
-<!--index.wxml-->
-<view class="{{screenStyle}}">
-  <view class="display-container">
-    <text class="count-down">{{displayTime}}</text>
-  </view>
-  <view class="input-container">
-    <picker bindchange="hhBindPickerChange" value="{{hh}}" range="{{hhArr}}">
-      <view class="picker">
-        {{hhArr[hh]}} 小时
-      </view>
-    </picker>
+<view class="container">
 
-    <picker bindchange="mmBindPickerChange" value="{{mm}}" range="{{mmArr}}">
-      <view class="picker">
-        {{mmArr[mm]}} 分钟
-      </view>
-    </picker>
-
-    <picker bindchange="ssBindPickerChange" value="{{ss}}" range="{{ssArr}}">
-      <view class="picker">
-        {{ssArr[ss]}} 秒
-      </view>
-    </picker>
-  </view>
-  <audio src="{{alarmSrc}}" action="{{action}}" loop></audio>
-  <view>
-    <button type="primary" size="default" bindtap="onSetHandler"> 设置 </button>
-  </view>
+  <view class="selected-time">{{displayTime}}</view>
+  <picker-view indicator-style="height: 50px;" class="picker" value="{{value}}" bindchange="bindChange">
+    <picker-view-column>
+      <view wx:for="{{hours}}" wx:key="{{hours}}" style="line-height: 50px; text-align: center;">{{item}}小时</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{minutes}}" wx:key="{{minutes}}" style="line-height: 50px; text-align: center;">{{item}}分</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{seconds}}" wx:key="{{seconds}}" style="line-height: 50px; text-align: center;">{{item}}秒</view>
+    </picker-view-column>
+    <picker-view-column>
+    </picker-view-column>
+  </picker-view>
 
   <view class="button-container">
-
-    <view class="button-start" bindtap="startTimer">
-      <text class="button-text">开始</text>
+    <view class="button-reset-circle">
+      <view class="button-reset" bindtap="resetTimer">
+        <text class="button-text">重置</text>
+      </view>
     </view>
 
-    <view class="button-stop" bindtap="stopTimer">
-      <text class="button-text">停</text>
+    <view class="button-start-circle">
+      <view class="button-start" bindtap="startOrPauseTimer">
+        <text class="button-text">{{startPauseButtonText}}</text>
+      </view>
     </view>
 
   </view>

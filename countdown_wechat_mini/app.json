@@ -6,7 +6,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "倒计时-花生皮编程",
     "navigationBarTextStyle":"black"
   },
   "style": "v2",
