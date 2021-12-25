@@ -1,0 +1,172 @@
+<template>
+  <div class="container">
+    <div class="display-container">
+      <span class="count-down">{{ displayTime }}</span>
+    </div>
+
+    <div class="time-buttons">
+      <div class="time-button" @click="resetTimer">
+        <p class="button-text">+10秒</p>
+      </div>
+      <div class="time-button" @click="resetTimer">
+        <p class="button-text">+30秒</p>
+      </div>
+      <div class="time-button" @click="resetTimer">
+        <p class="button-text">+1分钟</p>
+      </div>
+    </div>
+
+    <div class="button-container">
+      <div class="button-reset-circle">
+        <div class="button-reset" @click="resetTimer">
+          <p class="button-text">重置</p>
+        </div>
+      </div>
+
+      <div class="button-start-circle">
+        <div class="button-start" @click="startOrPauseTimer">
+          <span class="button-text">{{ startPauseButtonText }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "HspPage",
+  data() {
+    return {
+      startPauseButtonText: "开始",
+      displayTime: "00:00:000",
+      isStarted: false,
+      lastTimeElapsed: 0,
+      interval: 0,
+      startTime: Date.now(),
+    };
+  },
+  methods: {
+    startOrPauseTimer() {
+      if (this.isStarted) {
+        if (this.interval !== 0) {
+          clearInterval(this.interval);
+          this.interval = 0;
+        }
+        this.lastTimeElapsed =
+          Date.now() - this.startTime + this.lastTimeElapsed;
+        this.startPauseButtonText = "开始";
+      } else {
+        this.startTime = Date.now();
+        this.startPauseButtonText = "暂停";
+
+        if (this.interval === 0) {
+          this.interval = setInterval(() => {
+            var timeOffset = Date.now() - this.startTime + this.lastTimeElapsed;
+            this.displayTime = this.formatTime(timeOffset);
+          }, 100);
+        }
+      }
+
+      this.isStarted = !this.isStarted;
+    },
+    resetTimer() {
+      if (this.interval !== 0) {
+        clearInterval(this.interval);
+        this.interval = 0;
+      }
+      this.displayTime = this.formatTime(0);
+      this.isStarted = false;
+      this.lastTimeElapsed = 0;
+      this.startPauseButtonText = "开始";
+    },
+    formatTime(timeOffset) {
+      var mm = parseInt(timeOffset / 1000 / 60);
+      if (mm < 10) mm = "0" + mm;
+      var ss = parseInt((timeOffset / 1000) % 60);
+      if (ss < 10) ss = "0" + ss;
+      var ssss = parseInt(timeOffset % 1000);
+      if (ssss < 10) {
+        ssss = "00" + ssss;
+      } else if (ssss < 100) {
+        ssss = "0" + ssss;
+      }
+      return `${mm}:${ss}:${ssss}`;
+    },
+  },
+};
+</script>
+
+<style scoped>
+.time-buttons {
+  color: #2196F3;
+  display: flex;
+  justify-content: center;
+
+}
+.time-button{
+  padding: 1rem;
+}
+.count-down {
+  color: white;
+  font-size: 3.4em;
+  align-self: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-around;
+  width: 100%;
+  align-items: space-around;
+  padding-top: 15rem;
+}
+
+.button-start-circle {
+  background-color: #40b955;
+  height: 8.5rem;
+  width: 8.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-start {
+  color: white;
+  background-color: #40b955;
+  height: 8rem;
+  width: 8rem;
+  border-radius: 50%;
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-reset-circle {
+  background-color: #6c6c6c;
+  height: 8.5rem;
+  width: 8.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-reset {
+  display: flex;
+  color: white;
+  background-color: #6c6c6c;
+  height: 8rem;
+  width: 8rem;
+  border: 2px solid black;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-text {
+  font-size: 1.5em;
+  font-weight: 400;
+}
+</style>
