@@ -5,13 +5,13 @@
     </div>
 
     <div class="time-buttons">
-      <div class="time-button" @click="resetTimer">
+      <div class="time-button" @click="addTime(10)">
         <p class="button-text">+10秒</p>
       </div>
-      <div class="time-button" @click="resetTimer">
+      <div class="time-button" @click="addTime(30)">
         <p class="button-text">+30秒</p>
       </div>
-      <div class="time-button" @click="resetTimer">
+      <div class="time-button" @click="addTime(60)">
         <p class="button-text">+1分钟</p>
       </div>
     </div>
@@ -43,54 +43,58 @@ export default {
       lastTimeElapsed: 0,
       interval: 0,
       startTime: Date.now(),
-    };
+      remainingSeconds: 0,
+    }
   },
   methods: {
+    addTime(secondsToAdd) {
+      this.remainingSeconds += secondsToAdd
+      this.displayTime = this.formatTime(this.remainingSeconds)
+    },
     startOrPauseTimer() {
       if (this.isStarted) {
         if (this.interval !== 0) {
-          clearInterval(this.interval);
-          this.interval = 0;
+          clearInterval(this.interval)
+          this.interval = 0
         }
-        this.lastTimeElapsed =
-          Date.now() - this.startTime + this.lastTimeElapsed;
-        this.startPauseButtonText = "开始";
+        this.startPauseButtonText = "开始"
       } else {
-        this.startTime = Date.now();
-        this.startPauseButtonText = "暂停";
+        this.startPauseButtonText = "暂停"
 
         if (this.interval === 0) {
           this.interval = setInterval(() => {
-            var timeOffset = Date.now() - this.startTime + this.lastTimeElapsed;
-            this.displayTime = this.formatTime(timeOffset);
-          }, 100);
+            if (this.remainingSeconds > 0) {
+              this.remainingSeconds--
+              this.displayTime = this.formatTime(this.remainingSeconds)
+            } else {
+              this.resetTimer()
+            }
+          }, 1000)
         }
       }
 
-      this.isStarted = !this.isStarted;
+      this.isStarted = !this.isStarted
     },
     resetTimer() {
       if (this.interval !== 0) {
-        clearInterval(this.interval);
-        this.interval = 0;
+        clearInterval(this.interval)
+        this.interval = 0
       }
-      this.displayTime = this.formatTime(0);
-      this.isStarted = false;
-      this.lastTimeElapsed = 0;
-      this.startPauseButtonText = "开始";
+      this.remainingSeconds=0
+      this.displayTime = this.formatTime(0)
+      this.isStarted = false
+      this.startPauseButtonText = "开始"
     },
-    formatTime(timeOffset) {
-      var mm = parseInt(timeOffset / 1000 / 60);
-      if (mm < 10) mm = "0" + mm;
-      var ss = parseInt((timeOffset / 1000) % 60);
-      if (ss < 10) ss = "0" + ss;
-      var ssss = parseInt(timeOffset % 1000);
+    formatTime(timeInSeconds) {
+      var mm = parseInt(timeInSeconds / 3600)
+      if (mm < 10) mm = "0" + mm
+      var ss = parseInt((timeInSeconds % 3600) / 60)
+      if (ss < 10) ss = "0" + ss
+      var ssss = parseInt(timeInSeconds % 60)
       if (ssss < 10) {
-        ssss = "00" + ssss;
-      } else if (ssss < 100) {
-        ssss = "0" + ssss;
+        ssss = "0" + ssss
       }
-      return `${mm}:${ss}:${ssss}`;
+      return `${mm}:${ss}:${ssss}`
     },
   },
 };
@@ -98,12 +102,11 @@ export default {
 
 <style scoped>
 .time-buttons {
-  color: #2196F3;
+  color: #2196f3;
   display: flex;
   justify-content: center;
-
 }
-.time-button{
+.time-button {
   padding: 1rem;
 }
 .count-down {

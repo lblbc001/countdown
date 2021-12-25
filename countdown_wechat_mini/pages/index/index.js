@@ -73,11 +73,10 @@ Page({
       clearInterval(interval)
       interval = 0
     }
-    this.setData({
-      displayTime: this.formatTime(0)
-    })
+    remainingSeconds = 0
     isStarted = false
     this.setData({
+      displayTime: this.formatTime(0),
       startPauseButtonText: '开始'
     })
   },
