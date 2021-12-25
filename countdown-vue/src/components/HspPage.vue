@@ -34,16 +34,16 @@
 
 <script>
 export default {
-  name: "HspPage",
+  name: 'HspPage',
   data() {
     return {
-      startPauseButtonText: "开始",
-      displayTime: "00:00:000",
+      startPauseButtonText: '开始',
+      displayTime: '00:00:000',
       isStarted: false,
       lastTimeElapsed: 0,
       interval: 0,
       startTime: Date.now(),
-      remainingSeconds: 0,
+      remainingSeconds: 0
     }
   },
   methods: {
@@ -57,9 +57,9 @@ export default {
           clearInterval(this.interval)
           this.interval = 0
         }
-        this.startPauseButtonText = "开始"
+        this.startPauseButtonText = '开始'
       } else {
-        this.startPauseButtonText = "暂停"
+        this.startPauseButtonText = '暂停'
 
         if (this.interval === 0) {
           this.interval = setInterval(() => {
@@ -80,24 +80,24 @@ export default {
         clearInterval(this.interval)
         this.interval = 0
       }
-      this.remainingSeconds=0
+      this.remainingSeconds = 0
       this.displayTime = this.formatTime(0)
       this.isStarted = false
-      this.startPauseButtonText = "开始"
+      this.startPauseButtonText = '开始'
     },
     formatTime(timeInSeconds) {
       var mm = parseInt(timeInSeconds / 3600)
-      if (mm < 10) mm = "0" + mm
+      if (mm < 10) mm = '0' + mm
       var ss = parseInt((timeInSeconds % 3600) / 60)
-      if (ss < 10) ss = "0" + ss
+      if (ss < 10) ss = '0' + ss
       var ssss = parseInt(timeInSeconds % 60)
       if (ssss < 10) {
-        ssss = "0" + ssss
+        ssss = '0' + ssss
       }
       return `${mm}:${ss}:${ssss}`
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style scoped>
@@ -126,7 +126,7 @@ export default {
 }
 
 .button-start-circle {
-  background-color: #40b955;
+  background-color: #489cf5;
   height: 8.5rem;
   width: 8.5rem;
   border-radius: 50%;
@@ -136,7 +136,7 @@ export default {
 }
 .button-start {
   color: white;
-  background-color: #40b955;
+  background-color: #489cf5;
   height: 8rem;
   width: 8rem;
   border-radius: 50%;
