@@ -3,14 +3,48 @@
 struct Index {
   interval = 0
   isStarted = false
-  startTime = Date.now()
-  lastTimeElapsed = 0
-  @State timeElapsed: number = 0
+  remainingSeconds = 0
   @State startPauseButtonText: string = '开始'
+  @State displayTime: string = '00:00:00'
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      Text(this.formatTimeElapsed()).fontSize(40).fontColor(Color.White)
+      Text(this.displayTime).fontSize(40).fontColor(Color.White)
+      Row() {
+        Button({ type: ButtonType.Capsule, stateEffect: false }) {
+          Text('+10秒').fontSize(17).fontColor(Color.White)
+        }
+        .backgroundColor('#6c6c6c')
+        .margin(50)
+        .height(80)
+        .width(80)
+        .onClick(() => {
+          this.addTime(10)
+        })
+
+        Button({ type: ButtonType.Capsule, stateEffect: false }) {
+          Text('+30秒').fontSize(17).fontColor(Color.White)
+        }
+        .backgroundColor('#40B955')
+        .margin(50)
+        .height(80)
+        .width(80)
+        .onClick(() => {
+          this.addTime(30)
+        })
+
+        Button({ type: ButtonType.Capsule, stateEffect: false }) {
+          Text('+30秒').fontSize(17).fontColor(Color.White)
+        }
+        .backgroundColor('#40B955')
+        .margin(50)
+        .height(80)
+        .width(80)
+        .onClick(() => {
+          this.addTime(60)
+        })
+      }.margin({ top: 100 })
+
       Row() {
         Button({ type: ButtonType.Capsule, stateEffect: false }) {
           Text('重置').fontSize(17).fontColor(Color.White)
@@ -40,23 +74,32 @@ struct Index {
     .backgroundColor('#000000')
   }
 
+  addTime(timeInSeconds:number) {
+    this.remainingSeconds += timeInSeconds
+    this.displayTime = this.formatTime(this.remainingSeconds)
+  }
+
   startOrPauseTimer() {
     if (this.isStarted) {
       if (this.interval != 0) {
         clearInterval(this.interval)
         this.interval = 0
       }
-      this.startTime
-      this.lastTimeElapsed = Date.now() - this.startTime + this.lastTimeElapsed
       this.startPauseButtonText = '开始'
     } else {
-      this.startTime = Date.now()
       this.startPauseButtonText = '暂停'
 
       if (this.interval == 0) {
         this.interval = setInterval(() => {
-          this.timeElapsed = Date.now() - this.startTime + this.lastTimeElapsed
-        }, 100)
+          if (this.remainingSeconds > 0) {
+            this.remainingSeconds--
+            this.displayTime = this.formatTime(this.remainingSeconds)
+          }
+          else {
+            this.resetTimer()
+          }
+
+        }, 1000)
       }
     }
 
@@ -68,24 +111,22 @@ struct Index {
       clearInterval(this.interval)
       this.interval = 0
     }
-    this.timeElapsed = 0
-    this.lastTimeElapsed = 0
+    this.remainingSeconds = 0
+    this.displayTime = this.formatTime(this.remainingSeconds)
     this.isStarted = false
     this.startPauseButtonText = '开始'
   }
 
-  formatTimeElapsed() {
-    var mm = parseInt(this.timeElapsed / 1000 / 60 + '')
+  formatTime(remainingSeconds) {
+    var mm = parseInt(remainingSeconds / 3600 + '')
     var mmStr = mm.toString()
     if (mm < 10) mmStr = '0' + mm
-    var ss = parseInt((this.timeElapsed / 1000) % 60 + '')
+    var ss = parseInt((remainingSeconds % 3600 / 60) + '')
     var ssStr = ss.toString()
     if (ss < 10) ssStr = '0' + ss
-    var ssss = this.timeElapsed % 1000
+    var ssss = remainingSeconds % 60
     var ssssStr = ssss.toString()
     if (ssss < 10) {
-      ssssStr = '00' + ssss
-    } else if (ssss < 100) {
       ssssStr = '0' + ssss
     }
     return `${mmStr}:${ssStr}:${ssssStr}`
