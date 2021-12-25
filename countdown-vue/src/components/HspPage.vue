@@ -119,7 +119,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex: 1;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
   align-items: space-around;
   padding-top: 15rem;
@@ -132,6 +132,7 @@ export default {
   border-radius: 50%;
   display: flex;
   align-items: center;
+  margin: 1rem;
   justify-content: center;
 }
 .button-start {
@@ -153,6 +154,7 @@ export default {
   border-radius: 50%;
   display: flex;
   align-items: center;
+  margin: 1rem;
   justify-content: center;
 }
 
