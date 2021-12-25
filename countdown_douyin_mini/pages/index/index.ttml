@@ -1,0 +1,32 @@
+<view class="container">
+
+  <view class="selected-time">{{displayTime}}</view>
+  <picker-view indicator-style="height: 50px;" class="picker" value="{{value}}" bindchange="bindChange">
+    <picker-view-column>
+      <view tt:for="{{hours}}" tt:key="{{hours}}" style="line-height: 50px; text-align: center;">{{item}}小时</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view tt:for="{{minutes}}" tt:key="{{minutes}}" style="line-height: 50px; text-align: center;">{{item}}分</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view tt:for="{{seconds}}" tt:key="{{seconds}}" style="line-height: 50px; text-align: center;">{{item}}秒</view>
+    </picker-view-column>
+    <picker-view-column>
+    </picker-view-column>
+  </picker-view>
+
+  <view class="button-container">
+    <view class="button-reset-circle">
+      <view class="button-reset" bindtap="resetTimer">
+        <text class="button-text">重置</text>
+      </view>
+    </view>
+
+    <view class="button-start-circle">
+      <view class="button-start" bindtap="startOrPauseTimer">
+        <text class="button-text">{{startPauseButtonText}}</text>
+      </view>
+    </view>
+
+  </view>
+</view>

@@ -1,0 +1,26 @@
+{
+  "beginTime": "Sat Dec 25 2021 10:55:48 GMT+0800 (中国标准时间)",
+  "duration": "2111 ms",
+  "transformFileExtName": [
+    {
+      "type": "wxml -> ttml",
+      "message": "转换文件名后缀 wxml -> ttml，共计 2 个文件",
+      "files": [
+        "/Users/jerry/projects/mine/gitee/demos/count-downs/countdown_douyin_mini/pages/index/index.ttml",
+        "/Users/jerry/projects/mine/gitee/demos/count-downs/countdown_douyin_mini/pages/logs/logs.ttml"
+      ]
+    },
+    {
+      "type": "wxss -> ttss",
+      "message": "转换文件名后缀 wxss -> ttss，共计 3 个文件",
+      "files": [
+        "/Users/jerry/projects/mine/gitee/demos/count-downs/countdown_douyin_mini/app.ttss",
+        "/Users/jerry/projects/mine/gitee/demos/count-downs/countdown_douyin_mini/pages/index/index.ttss",
+        "/Users/jerry/projects/mine/gitee/demos/count-downs/countdown_douyin_mini/pages/logs/logs.ttss"
+      ]
+    }
+  ],
+  "needAttention": [],
+  "transformError": [],
+  "transformLog": "/Users/jerry/projects/mine/gitee/demos/count-downs/countdown_douyin_mini/log.txt"
+}

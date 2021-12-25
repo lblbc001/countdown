@@ -1,0 +1,67 @@
+/**index.ttss**/
+.selected-time{
+  font-size: 3rem;
+}
+.picker{
+  width: 70%; 
+  height: 100px;
+  margin-top: 20px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  justify-content: space-around;
+  width: 100%;
+  align-items: space-around;
+  padding-top: 200rpx;
+}
+
+.button-start-circle{
+  background-color: #489cf5;
+  height: 190rpx;
+  width: 190rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.button-start {
+  color: white;
+  background-color: #489cf5;
+  height: 170rpx;
+  width: 170rpx;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-reset-circle{
+  background-color: #6c6c6c;
+  height: 190rpx;
+  width: 190rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-reset {
+  display: flex;
+  color: white;
+  background-color: #6c6c6c;
+  height: 170rpx;
+  width: 170rpx;
+  border: 2px solid white;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-text {
+  font-size: 1.5em;
+  font-weight: 400;
+}
