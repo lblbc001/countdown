@@ -3,43 +3,37 @@
 struct Index {
   interval = 0
   isStarted = false
-  remainingSeconds = 0
+  remainingSeconds = 10
+  @State displayTime: string = '00:00:10'
   @State startPauseButtonText: string = '开始'
-  @State displayTime: string = '00:00:00'
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(this.displayTime).fontSize(40).fontColor(Color.White)
       Row() {
-        Button({ type: ButtonType.Capsule, stateEffect: false }) {
-          Text('+10秒').fontSize(17).fontColor(Color.White)
+        Button({stateEffect: false }) {
+          Text('+10秒').fontSize(20).fontColor('#489cf5')
         }
-        .backgroundColor('#6c6c6c')
-        .margin(50)
-        .height(80)
-        .width(80)
+        .backgroundColor(Color.Black)
+        .margin(10)
         .onClick(() => {
           this.addTime(10)
         })
 
-        Button({ type: ButtonType.Capsule, stateEffect: false }) {
-          Text('+30秒').fontSize(17).fontColor(Color.White)
+        Button({ type: ButtonType.Normal, stateEffect: false }) {
+          Text('+30秒').fontSize(20).fontColor('#489cf5')
         }
-        .backgroundColor('#40B955')
-        .margin(50)
-        .height(80)
-        .width(80)
+        .backgroundColor(Color.Black)
+        .margin(10)
         .onClick(() => {
           this.addTime(30)
         })
 
         Button({ type: ButtonType.Capsule, stateEffect: false }) {
-          Text('+30秒').fontSize(17).fontColor(Color.White)
+          Text('+1分钟').fontSize(17).fontColor('#489cf5')
         }
-        .backgroundColor('#40B955')
-        .margin(50)
-        .height(80)
-        .width(80)
+        .backgroundColor(Color.Black)
+        .margin(10)
         .onClick(() => {
           this.addTime(60)
         })
@@ -60,7 +54,7 @@ struct Index {
         Button({ type: ButtonType.Capsule, stateEffect: false }) {
           Text(this.startPauseButtonText).fontSize(17).fontColor(Color.White)
         }
-        .backgroundColor('#40B955')
+        .backgroundColor('#489cf5')
         .margin(50)
         .height(80)
         .width(80)
@@ -118,17 +112,17 @@ struct Index {
   }
 
   formatTime(remainingSeconds) {
-    var mm = parseInt(remainingSeconds / 3600 + '')
-    var mmStr = mm.toString()
-    if (mm < 10) mmStr = '0' + mm
-    var ss = parseInt((remainingSeconds % 3600 / 60) + '')
-    var ssStr = ss.toString()
-    if (ss < 10) ssStr = '0' + ss
-    var ssss = remainingSeconds % 60
-    var ssssStr = ssss.toString()
-    if (ssss < 10) {
-      ssssStr = '0' + ssss
+    var hour = parseInt(remainingSeconds / 3600 + '')
+    var hourStr = hour.toString()
+    if (hour < 10) hourStr = '0' + hour
+    var minute = parseInt((remainingSeconds % 3600 / 60) + '')
+    var minuteStr = minute.toString()
+    if (minute < 10) minuteStr = '0' + minute
+    var seconds = remainingSeconds % 60
+    var secondsStr = seconds.toString()
+    if (seconds < 10) {
+      secondsStr = '0' + seconds
     }
-    return `${mmStr}:${ssStr}:${ssssStr}`
+    return `${hourStr}:${minuteStr}:${secondsStr}`
   }
 }
