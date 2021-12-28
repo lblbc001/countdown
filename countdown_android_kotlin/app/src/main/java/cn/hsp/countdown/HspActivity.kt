@@ -1,15 +1,10 @@
-package cn.hsp.demo
+package cn.hsp.countdown
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Looper
-import android.widget.TextView
-import android.widget.CheckBox
 import android.os.Bundle
-import cn.hsp.demo.R
-import android.widget.CompoundButton
 import android.annotation.SuppressLint
 import android.os.Handler
-import android.view.View
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_hsp.*
 
