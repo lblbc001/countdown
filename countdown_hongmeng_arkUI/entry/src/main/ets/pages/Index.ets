@@ -83,23 +83,13 @@ struct Index {
       this.startPauseButtonText = '开始'
     } else {
       this.startPauseButtonText = '暂停'
-
       if (this.interval == 0) {
         this.interval = setInterval(() => {
           if (this.remainingSeconds > 0) {
             this.remainingSeconds--
             this.displayTime = this.formatTime()
           } else {
-
-            AlertDialog.show({
-              title: "提示",
-              message: "时间到啦",
-              confirm: {
-                value: "确定",
-                action: () => {
-                }
-              }
-            });
+            this.showDialog()
             this.resetTimer()
           }
         }, 1000)
@@ -107,6 +97,18 @@ struct Index {
     }
 
     this.isStarted = !this.isStarted
+  }
+
+  showDialog() {
+    AlertDialog.show({
+      title: "提示",
+      message: "时间到啦",
+      confirm: {
+        value: "确定",
+        action: () => {
+        }
+      }
+    });
   }
 
   resetTimer() {
