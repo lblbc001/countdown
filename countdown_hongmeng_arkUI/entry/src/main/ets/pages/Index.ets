@@ -42,8 +42,8 @@ struct Index {
       }.margin({ top: 100 })
 
       Row() {
-        Button({ type: ButtonType.Capsule, stateEffect: false }) {
-          Text('重置').fontSize(17).fontColor(Color.White)
+        Button() {
+          Text('重置').fontColor(Color.White)
         }
         .backgroundColor('#6c6c6c')
         .margin(50)
@@ -53,10 +53,9 @@ struct Index {
           this.resetTimer()
         })
 
-        Button({ type: ButtonType.Capsule, stateEffect: false }) {
-          Text(this.startPauseButtonText).fontSize(17).fontColor(Color.White)
+        Button() {
+          Text(this.startPauseButtonText).fontColor(Color.White)
         }
-        .backgroundColor('#489cf5')
         .margin(50)
         .height(80)
         .width(80)
@@ -67,7 +66,7 @@ struct Index {
     }
     .width('100%')
     .height('100%')
-    .backgroundColor('#000000')
+    .backgroundColor(Color.Black)
   }
 
   addTime(timeInSeconds: number) {
