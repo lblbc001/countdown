@@ -1,5 +1,3 @@
-import prompt from '@ohos.prompt'
-
 @Entry
 @Component
 struct Index {
