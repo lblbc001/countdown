@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="693d8b31-18d9-4bc5-bd19-956c34ffedae" name="默认的" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="stopwatch_hongmeng" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HiLogFilter">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+  </component>
+  <component name="ProjectId" id="20Gj87xdoyVQniBbBP61a7r0w0q" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <OptionsSetting value="false" id="更新" />
+    <ConfirmationsSetting value="2" id="新增" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SAVED_PROJECT_CPP_SUPPORT" value="non-cpp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.ide.version" value="3.0.0.601" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="emulatorExperiment" />
+    <property name="show.inlinked.gradle.project.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="ohos.template.packageName">
+      <recent name="cn.hsp.stopwatch" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/entry/src/main/resources/base/media" />
+      <recent name="$PROJECT_DIR$/entry/src/main/java/cn/hsp/stopwatch" />
+      <recent name="$PROJECT_DIR$/entry/src/main/resources/base/graphic" />
+    </key>
+  </component>
+  <component name="RunManager" selected="HarmonyOS App.entry">
+    <configuration name="entry" type="OhosDebugTask" factoryName="HarmonyOS App" activateToolWindowBeforeRun="false">
+      <module name="entry" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto />
+      <Dual />
+      <DualJs />
+      <Java />
+      <Js />
+      <Native />
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <DEPLOY_MULTI_HAP>false</DEPLOY_MULTI_HAP>
+      <REINSTALL_APPLICATION>false</REINSTALL_APPLICATION>
+      <method v="2">
+        <option name="Ohos.Build.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Super App" type="OhosSuperAppDebugTask" factoryName="HarmonyOS Super App">
+      <method v="2">
+        <option name="Ohos.Build.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="693d8b31-18d9-4bc5-bd19-956c34ffedae" name="默认的" comment="" />
+      <created>1635677656831</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1635677656831</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1625" height="296" key="GridCell.Tab.0.bottom" timestamp="1635691792973">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state width="1625" height="296" key="GridCell.Tab.0.bottom/0.25.1680.946@0.25.1680.946" timestamp="1635691792973" />
+    <state width="1625" height="296" key="GridCell.Tab.0.center" timestamp="1635691792972">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state width="1625" height="296" key="GridCell.Tab.0.center/0.25.1680.946@0.25.1680.946" timestamp="1635691792972" />
+    <state width="1625" height="296" key="GridCell.Tab.0.left" timestamp="1635691792972">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state width="1625" height="296" key="GridCell.Tab.0.left/0.25.1680.946@0.25.1680.946" timestamp="1635691792972" />
+    <state width="1625" height="296" key="GridCell.Tab.0.right" timestamp="1635691792972">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state width="1625" height="296" key="GridCell.Tab.0.right/0.25.1680.946@0.25.1680.946" timestamp="1635691792972" />
+    <state width="1625" height="296" key="GridCell.Tab.1.bottom" timestamp="1635691792974">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state width="1625" height="296" key="GridCell.Tab.1.bottom/0.25.1680.946@0.25.1680.946" timestamp="1635691792974" />
+    <state width="1625" height="296" key="GridCell.Tab.1.center" timestamp="1635691792974">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state width="1625" height="296" key="GridCell.Tab.1.center/0.25.1680.946@0.25.1680.946" timestamp="1635691792974" />
+    <state width="1625" height="296" key="GridCell.Tab.1.left" timestamp="1635691792973">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state width="1625" height="296" key="GridCell.Tab.1.left/0.25.1680.946@0.25.1680.946" timestamp="1635691792973" />
+    <state width="1625" height="296" key="GridCell.Tab.1.right" timestamp="1635691792974">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state width="1625" height="296" key="GridCell.Tab.1.right/0.25.1680.946@0.25.1680.946" timestamp="1635691792974" />
+    <state x="100" y="125" width="1480" height="746" key="HVDManager" timestamp="1639232159539">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state x="100" y="125" width="1480" height="746" key="HVDManager/0.25.1680.946@0.25.1680.946" timestamp="1639232159539" />
+    <state x="224" y="46" key="SettingsEditor" timestamp="1635773875263">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state x="224" y="46" key="SettingsEditor/0.25.1680.946@0.25.1680.946" timestamp="1635773875263" />
+    <state x="611" y="399" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1635773856286">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state x="611" y="399" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.25.1680.946@0.25.1680.946" timestamp="1635773856286" />
+    <state x="509" y="190" width="691" height="692" key="find.popup" timestamp="1639233704284">
+      <screen x="0" y="25" width="1680" height="946" />
+    </state>
+    <state x="509" y="190" width="691" height="692" key="find.popup/0.25.1680.946@0.25.1680.946" timestamp="1639233704284" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="entry">
+        <watch expression="findComponentById(ResourceTable.Id_reset_image)" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

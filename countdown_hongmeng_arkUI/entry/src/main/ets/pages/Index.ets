@@ -71,7 +71,7 @@ struct Index {
 
   addTime(timeInSeconds: number) {
     this.remainingSeconds += timeInSeconds
-    this.displayTime = this.formatTime(this.remainingSeconds)
+    this.displayTime = this.formatTime()
   }
 
   startOrPauseTimer() {
@@ -88,7 +88,7 @@ struct Index {
         this.interval = setInterval(() => {
           if (this.remainingSeconds > 0) {
             this.remainingSeconds--
-            this.displayTime = this.formatTime(this.remainingSeconds)
+            this.displayTime = this.formatTime()
           } else {
 
             AlertDialog.show({
@@ -115,23 +115,22 @@ struct Index {
       this.interval = 0
     }
     this.remainingSeconds = 0
-    this.displayTime = this.formatTime(this.remainingSeconds)
+    this.displayTime = this.formatTime()
     this.isStarted = false
     this.startPauseButtonText = '开始'
   }
 
-  formatTime(remainingSeconds) {
-    var hour = parseInt(remainingSeconds / 3600 + '')
-    var hourStr = hour.toString()
-    if (hour < 10) hourStr = '0' + hour
-    var minute = parseInt((remainingSeconds % 3600 / 60) + '')
-    var minuteStr = minute.toString()
-    if (minute < 10) minuteStr = '0' + minute
-    var seconds = remainingSeconds % 60
-    var secondsStr = seconds.toString()
-    if (seconds < 10) {
-      secondsStr = '0' + seconds
-    }
+  formatTime() {
+    var hour = this.convertNumberToStr(this.remainingSeconds / 3600)
+    var minute = this.convertNumberToStr(this.remainingSeconds % 3600 / 60)
+    var seconds = this.convertNumberToStr(this.remainingSeconds % 60)
+    var hourStr = hour.padStart(2, '0')
+    var minuteStr = minute.padStart(2, '0')
+    var secondsStr = seconds.padStart(2, '0')
     return `${hourStr}:${minuteStr}:${secondsStr}`
+  }
+
+  convertNumberToStr(num: number) {
+    return parseInt(num + "").toString()
   }
 }
