@@ -12,7 +12,7 @@ struct Index {
       Column() {
         Text(this.displayTime).fontSize(40).fontColor(Color.White)
         Row() {
-          Button({ stateEffect: false }) {
+          Button() {
             Text('+10秒').fontSize(20).fontColor('#489cf5')
           }
           .backgroundColor(Color.Black)
@@ -21,7 +21,7 @@ struct Index {
             this.addTime(10)
           })
 
-          Button({ type: ButtonType.Normal, stateEffect: false }) {
+          Button() {
             Text('+30秒').fontSize(20).fontColor('#489cf5')
           }
           .backgroundColor(Color.Black)
@@ -30,7 +30,7 @@ struct Index {
             this.addTime(30)
           })
 
-          Button({ type: ButtonType.Capsule, stateEffect: false }) {
+          Button() {
             Text('+1分钟').fontSize(17).fontColor('#489cf5')
           }
           .backgroundColor(Color.Black)
@@ -48,6 +48,9 @@ struct Index {
           .margin(50)
           .height(80)
           .width(80)
+          .onClick(() => {
+            this.resetTimer()
+          })
 
           Button() {
             Text(this.startPauseButtonText).fontColor(Color.White)
@@ -55,6 +58,9 @@ struct Index {
           .margin(50)
           .height(80)
           .width(80)
+          .onClick(() => {
+            this.startOrPauseTimer()
+          })
         }.margin({ top: 100 })
       }
       .width('100%')
@@ -67,6 +73,54 @@ struct Index {
   addTime(timeInSeconds: number) {
     this.remainingSeconds += timeInSeconds
     this.displayTime = this.formatTime()
+  }
+
+  startOrPauseTimer() {
+    if (this.isStarted) {
+      if (this.interval != 0) {
+        clearInterval(this.interval)
+        this.interval = 0
+      }
+      this.startPauseButtonText = '开始'
+    } else {
+      this.startPauseButtonText = '暂停'
+      if (this.interval == 0) {
+        this.interval = setInterval(() => {
+          if (this.remainingSeconds > 0) {
+            this.remainingSeconds--
+            this.displayTime = this.formatTime()
+          } else {
+            this.showDialog()
+            this.resetTimer()
+          }
+        }, 1000)
+      }
+    }
+
+    this.isStarted = !this.isStarted
+  }
+
+  showDialog() {
+    AlertDialog.show({
+      title: "提示",
+      message: "时间到啦",
+      confirm: {
+        value: "确定",
+        action: () => {
+        }
+      }
+    });
+  }
+
+  resetTimer() {
+    if (this.interval != 0) {
+      clearInterval(this.interval)
+      this.interval = 0
+    }
+    this.remainingSeconds = 0
+    this.displayTime = this.formatTime()
+    this.isStarted = false
+    this.startPauseButtonText = '开始'
   }
 
   formatTime() {

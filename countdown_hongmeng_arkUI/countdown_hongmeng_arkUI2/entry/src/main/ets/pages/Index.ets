@@ -12,7 +12,7 @@ struct Index {
       Column() {
         Text(this.displayTime).fontSize(40).fontColor(Color.White)
         Row() {
-          Button({ stateEffect: false }) {
+          Button() {
             Text('+10秒').fontSize(20).fontColor('#489cf5')
           }
           .backgroundColor(Color.Black)
@@ -21,7 +21,7 @@ struct Index {
             this.addTime(10)
           })
 
-          Button({ type: ButtonType.Normal, stateEffect: false }) {
+          Button() {
             Text('+30秒').fontSize(20).fontColor('#489cf5')
           }
           .backgroundColor(Color.Black)
@@ -30,7 +30,7 @@ struct Index {
             this.addTime(30)
           })
 
-          Button({ type: ButtonType.Capsule, stateEffect: false }) {
+          Button() {
             Text('+1分钟').fontSize(17).fontColor('#489cf5')
           }
           .backgroundColor(Color.Black)
