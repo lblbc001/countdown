@@ -77,24 +77,19 @@ struct Index {
 
   startOrPauseTimer() {
     if (this.isStarted) {
-      if (this.interval != 0) {
-        clearInterval(this.interval)
-        this.interval = 0
-      }
+      clearInterval(this.interval)
       this.startPauseButtonText = '开始'
     } else {
       this.startPauseButtonText = '暂停'
-      if (this.interval == 0) {
-        this.interval = setInterval(() => {
-          if (this.remainingSeconds > 0) {
-            this.remainingSeconds--
-            this.displayTime = this.formatTime()
-          } else {
-            this.showDialog()
-            this.resetTimer()
-          }
-        }, 1000)
-      }
+      this.interval = setInterval(() => {
+        if (this.remainingSeconds > 0) {
+          this.remainingSeconds--
+          this.displayTime = this.formatTime()
+        } else {
+          this.showDialog()
+          this.resetTimer()
+        }
+      }, 1000)
     }
 
     this.isStarted = !this.isStarted
@@ -113,10 +108,7 @@ struct Index {
   }
 
   resetTimer() {
-    if (this.interval != 0) {
-      clearInterval(this.interval)
-      this.interval = 0
-    }
+    clearInterval(this.interval)
     this.remainingSeconds = 0
     this.displayTime = this.formatTime()
     this.isStarted = false
