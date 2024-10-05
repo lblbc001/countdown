@@ -61,12 +61,12 @@ struct Index {
   }
 
   formatTime() {
-    var hour = this.convertNumberToStr(this.remainingSeconds / 3600)
-    var minute = this.convertNumberToStr(this.remainingSeconds % 3600 / 60)
-    var seconds = this.convertNumberToStr(this.remainingSeconds % 60)
-    var hourStr = hour.padStart(2, '0')
-    var minuteStr = minute.padStart(2, '0')
-    var secondsStr = seconds.padStart(2, '0')
+    let hour = this.convertNumberToStr(this.remainingSeconds / 3600)
+    let minute = this.convertNumberToStr(this.remainingSeconds % 3600 / 60)
+    let seconds = this.convertNumberToStr(this.remainingSeconds % 60)
+    let hourStr = hour.padStart(2, '0')
+    let minuteStr = minute.padStart(2, '0')
+    let secondsStr = seconds.padStart(2, '0')
     return `${hourStr}:${minuteStr}:${secondsStr}`
   }
 
